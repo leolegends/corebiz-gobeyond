@@ -21,7 +21,7 @@ services:
   networks: 
     - gobeyond-network
   volumes:
-    - mysql_saver_data:/var/lib/mysql
+    - mysql_data:/var/lib/mysql
 
  redis:
   image: 'bitnami/redis'
@@ -30,7 +30,7 @@ services:
   sysctls:
     net.core.somaxconn: 1024
   volumes:
-   - redis_saver_data:/bitnami/redis/data
+   - redis_data:/bitnami/redis/data
   restart: always
   environment:
    - WORKSPACE_PUID=1000
@@ -43,5 +43,5 @@ networks:
  gobeyond-network:
 
 volumes:
-  redis_saver_data:
-  mysql_saver_data:
+  redis_data:
+  mysql_data:
