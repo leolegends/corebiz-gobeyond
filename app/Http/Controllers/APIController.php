@@ -8,9 +8,13 @@ class APIController extends Controller
 {
     public function showMessage(Request $request)
     {
-        return Response([
-            'status' => 200,
-            'msg' => 'Hello World'
-        ], 200);
-    }
+        $response = [
+            'name' => "Leonardo",
+            'lastname' => "Ribeiro",
+            "age" => 26,
+            "programming_language" => "PHP" 
+        ];
+
+        return Response($response, 418);
+    }   
 }
