@@ -23,3 +23,7 @@ Route::get('/message','APIController@showMessage');
 
 //? Rota de teste action.
 Route::post('/action','APIController@showAction');
+
+//? Rotas para o controller Pessoas.
+
+Route::get('/listagem-pessoas', 'APIPessoasController@listagemDePessoas');
