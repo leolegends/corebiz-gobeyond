@@ -18,4 +18,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//? Rota de Teste retornando um array.
 Route::get('/message','APIController@showMessage');
+
+//? Rota de teste action.
+Route::post('/action','APIController@showAction');

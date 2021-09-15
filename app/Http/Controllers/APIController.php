@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class APIController extends Controller
 {
-    public function showMessage(Request $request)
+    public function showMessage()
     {
         $response = [
             'name' => "Leonardo",
@@ -16,5 +16,10 @@ class APIController extends Controller
         ];
 
         return Response($response, 418);
-    }   
+    }
+    
+    public function showAction(Request $request)
+    {
+        dd($request);
+    }
 }
