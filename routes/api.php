@@ -27,3 +27,5 @@ Route::post('/action','APIController@showAction');
 //? Rotas para o controller Pessoas.
 
 Route::get('/listagem-pessoas', 'APIPessoasController@listagemDePessoas');
+
+Route::post('cadastro-pessoa','APIPessoasController@cadastraPessoa');
