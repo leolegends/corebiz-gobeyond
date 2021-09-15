@@ -3,17 +3,52 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\ListagemDePessoasRequest;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\ListagemDePessoasRequest;
+use App\Http\Resources\ListagemPessoasResource;
+
 class APIPessoasController extends Controller
 {
 
     protected $list = [];
 
+    protected $lista = [
+        [
+            "nome" => "Leonardo 0",
+            "idade" => 26,
+            "email" => "leo@leo.com"
+        ],
+        [
+            "nome" => "Leonardo 1",
+            "idade" => 27,
+            "email" => "leo@leo.com"
+        ],
+        [
+            "nome" => "Leonardo 2",
+            "idade" => 28,
+            "email" => "leo@leo.com"
+        ],
+        [
+            "nome" => "Leonardo 3",
+            "idade" => 29,
+            "email" => "leo@leo.com"
+        ],
+    ];
+
     //* Route
     public function listagemDePessoas()
     {
-        return Response($this->trataListagemDePessoas(), 200);
+
+        $list = $this->lista;
+
+        Log::info("It`s work!");
+        
+        return Response(  
+            ListagemPessoasResource::collection($list)
+            ->filter(function($list){
+                return $list['idade'] >= 28;
+            })->values(), 200);
     }
 
     public function cadastraPessoa(Request $request)
@@ -24,37 +59,13 @@ class APIPessoasController extends Controller
     //* Helper
     private function trataListagemDePessoas()
     {
-        
-        //* Função que coloca as letras maiusculas.
-        strtoupper("test");
+        //? Collection helper
+        // return collect($lista)->map(function($item){
+        //     $item['nome'] = strtoupper($item['nome']);
+        //     return $item;
+        // })->values();
 
-        $lista = [
-            [
-                "nome" => "Leonardo 0",
-                "idade" => 26,
-                "email" => "leo@leo.com"
-            ],
-            [
-                "nome" => "Leonardo 1",
-                "idade" => 27,
-                "email" => "leo@leo.com"
-            ],
-            [
-                "nome" => "Leonardo 2",
-                "idade" => 28,
-                "email" => "leo@leo.com"
-            ],
-            [
-                "nome" => "Leonardo 3",
-                "idade" => 29,
-                "email" => "leo@leo.com"
-            ],
-        ];
-
-        return collect($lista)->map(function($item){
-            $item['nome'] = strtoupper($item['nome']);
-            return $item;
-        })->values();
+        return ListagemPessoasResource::collection($this->lista);
 
     }
 

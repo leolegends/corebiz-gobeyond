@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //? Rota de Teste retornando um array.
-Route::get('/message','APIController@showMessage');
+Route::get('/message','APIController@showMessage')->middleware('iphone');
 
 //? Rota de teste action.
 Route::post('/action','APIController@showAction');
