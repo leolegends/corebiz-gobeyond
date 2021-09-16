@@ -7,40 +7,18 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\ListagemDePessoasRequest;
 use App\Http\Resources\ListagemPessoasResource;
+use App\Models\Pessoas;
 
 class APIPessoasController extends Controller
 {
 
     protected $list = [];
 
-    protected $lista = [
-        [
-            "nome" => "Leonardo 0",
-            "idade" => 26,
-            "email" => "leo@leo.com"
-        ],
-        [
-            "nome" => "Leonardo 1",
-            "idade" => 27,
-            "email" => "leo@leo.com"
-        ],
-        [
-            "nome" => "Leonardo 2",
-            "idade" => 28,
-            "email" => "leo@leo.com"
-        ],
-        [
-            "nome" => "Leonardo 3",
-            "idade" => 29,
-            "email" => "leo@leo.com"
-        ],
-    ];
-
     //* Route
     public function listagemDePessoas()
     {
 
-        $list = $this->lista;
+        $list = Pessoas::all();
 
         Log::info("It`s work!");
         
@@ -74,9 +52,8 @@ class APIPessoasController extends Controller
     private function actionCadastraPessoa($request)
     {
         $validator = Validator::make($request->all(), [
-            'nome' => 'required|string|max:100',
+            'nome' => 'required|string|max:120',
             'idade' => 'required|int|max:120|min:1',
-            'cep' => 'required|string|max:8',
             'email' => 'required|email'
         ]);
 
@@ -85,17 +62,23 @@ class APIPessoasController extends Controller
         }
 
         $request->nome = strtoupper($request->nome);
-        
-        $pessoa = [
-            'nome' => $request->nome,
-            'idade' => $request->idade,
-            'cep' => $request->cep,
-            'email' => $request->email
-        ];
+        try {
+            $pessoa = Pessoas::create([
+                'id'   => (int) $request->id,
+                'nome' => $request->nome,
+                'idade' => $request->idade,
+                'email' => $request->email
+            ]);
+        }catch(\Exception $e) {
+            return Response([
+                'status' => 500,
+                'msg' => $e->getMessage()
+            ], 500);
+        }
 
-        array_push($this->list, $pessoa);
+       
 
-        return $this->list;
+        return Response($pessoa, 201);
 
     }
 
