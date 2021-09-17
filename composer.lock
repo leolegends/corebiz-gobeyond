@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6cadd819a6415b190ae2704ced6e6c8b",
+    "content-hash": "f549738438917760e5b65adba0aa48fe",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1520,6 +1520,69 @@
                 }
             ],
             "time": "2021-01-18T20:58:21+00:00"
+        },
+        {
+            "name": "leolegends/maketrait",
+            "version": "2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/leolegends/maketrait.git",
+                "reference": "6695a027c6be83529c19004f807c747417123471"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/leolegends/maketrait/zipball/6695a027c6be83529c19004f807c747417123471",
+                "reference": "6695a027c6be83529c19004f807c747417123471",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=5.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.1",
+                "orchestra/testbench": "~3.0",
+                "phpunit/phpunit": "~7.0",
+                "sempro/phpunit-pretty-print": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "leolegends\\maketrait\\maketraitServiceProvider"
+                    ],
+                    "aliases": {
+                        "maketrait": "leolegends\\maketrait\\Facades\\maketrait"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "leolegends\\maketrait\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Leonardo Ribeiro",
+                    "email": "lviniciusribeiro@yahoo.com.br",
+                    "homepage": "https://lrtitecnologia.wordpress.com"
+                }
+            ],
+            "description": "Package make:trait to Laravel",
+            "homepage": "https://github.com/leolegends/maketrait",
+            "keywords": [
+                "laravel",
+                "leolegends",
+                "maketrait"
+            ],
+            "support": {
+                "issues": "https://github.com/leolegends/maketrait/issues",
+                "source": "https://github.com/leolegends/maketrait/tree/2.1"
+            },
+            "time": "2019-10-08T00:49:50+00:00"
         },
         {
             "name": "monolog/monolog",

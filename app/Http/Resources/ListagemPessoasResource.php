@@ -15,6 +15,7 @@ class ListagemPessoasResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this['id'],
             'name' => strtoupper($this['nome']),
             'age' => $this['idade'],
             'email' => $this['email']

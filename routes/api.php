@@ -28,4 +28,8 @@ Route::post('/action','APIController@showAction');
 
 Route::get('listagem-pessoas', 'APIPessoasController@listagemDePessoas')->middleware('authenticate-api');
 
+//? Rota para cadastrar.
 Route::post('cadastro-pessoa','APIPessoasController@cadastraPessoa');
+
+//? Rota para atualizar.
+Route::put('atualizar-pessoa/{id}','APIPessoasController@atualizarPessoa');

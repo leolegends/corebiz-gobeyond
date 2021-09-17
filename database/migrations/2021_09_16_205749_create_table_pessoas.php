@@ -15,15 +15,13 @@ class CreateTablePessoas extends Migration
     public function up()
     {
         Schema::create('pessoas', function (Blueprint $table) {
-            $table->bigInteger('id',false,true);
-            // $table->increments('id');
+            $table->integer('id')->unsigned()->autoIncrement();
             $table->string('nome', 120);
-            $table->integer('idade', 3);
+            $table->integer('idade')->nullable();
             $table->string('email', 100);
             $table->timestamps();
         });
 
-        DB::statement('ALTER TABLE pessoas AUTO_INCREMENT = 1000;');
     }
 
     /**

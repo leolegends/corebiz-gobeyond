@@ -14,7 +14,6 @@ class Pessoas extends Model
     protected $primaryKey = "id";
 
     protected $fillable = [
-        'id',
         'nome',
         'idade',
         'email'
