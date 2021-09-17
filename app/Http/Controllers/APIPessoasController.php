@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Traits\PessoasTrait;
+use Illuminate\Http\Request;
 
 class APIPessoasController extends Controller
 {
