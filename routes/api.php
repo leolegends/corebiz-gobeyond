@@ -26,10 +26,16 @@ Route::post('/action','APIController@showAction');
 
 //? Rotas para o controller Pessoas.
 
-Route::get('listagem-pessoas', 'APIPessoasController@listagemDePessoas')->middleware('authenticate-api');
+Route::get('listagem-pessoa', 'APIPessoasController@listagemDePessoas')->middleware('authenticate-api');
+
+//? Rota para listagem de pessoa por id.
+Route::get('listagem-pessoa/{id}', 'APIPessoasController@listagemDePessoasById')->middleware('authenticate-api');
 
 //? Rota para cadastrar.
 Route::post('cadastro-pessoa','APIPessoasController@cadastraPessoa');
 
 //? Rota para atualizar.
 Route::put('atualizar-pessoa/{id}','APIPessoasController@atualizarPessoa');
+
+//? Rota para deletar.
+Route::delete('deletar-pessoa/{id}','APIPessoasController@deletePessoa');

@@ -20,6 +20,14 @@ class APIPessoasController extends Controller
         return Response($result, $result['status']);
     }
 
+     //* Route de GET Listagem By Id
+     public function listagemDePessoasById(int $id)
+     {
+         //? Método refatorado para a Trait PessoasTrait.      
+         $result = $this->ListagemDePessoasByIdTrait($id);
+         return Response($result, $result['status']);
+     }
+
     //* Route de POST Cadasrtro
     public function cadastraPessoa(Request $request)
     {
@@ -33,6 +41,14 @@ class APIPessoasController extends Controller
     {
         //? Método refatorado para a Trait PessoasTrait.       
         $result = $this->UpdatePessoasTrait($request, $id);
+        return Response($result, $result['status']);
+    }
+
+    //* Route de DELETE Atualizacao
+    public function deletePessoa(int $id)
+    {
+        //? Método refatorado para a Trait PessoasTrait.       
+        $result = $this->DeletePessoasTrait($id);
         return Response($result, $result['status']);
     }
 

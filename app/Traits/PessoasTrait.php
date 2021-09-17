@@ -55,12 +55,20 @@ trait PessoasTrait
         } else {
             $list = Pessoas::all();
         }
-
-        Log::info("It`s work!");
         
         return [ 
             'status' => 200,
             'data' => ListagemPessoasResource::collection($list)->values(), 
+        ];
+    }
+
+    public function ListagemDePessoasByIdTrait(int $id) : array
+    {
+        $pessoa = Pessoas::where(['id' => $id])->get();
+        
+        return [ 
+            'status' => 200,
+            'data' => ListagemPessoasResource::collection($pessoa)->values(), 
         ];
     }
 
@@ -106,5 +114,48 @@ trait PessoasTrait
             'data' => $pessoa
         ];
         
+    }
+
+    public function DeletePessoasTrait(int $id) : array 
+    {
+        $fieldsValidator = ['id' => $id];
+
+        $validator = Validator::make($fieldsValidator, [
+            'id' => 'required|int'
+        ]);
+
+        if($validator->fails()){
+            return [
+                'status' => 406,
+                'data' => $validator->errors()
+                ];
+        }
+
+        $pessoa = Pessoas::where('id', $id)->first();
+
+        if(is_null($pessoa)) {
+            return [
+                'status' => 200,
+                'msg' => 'registro já apagado.'
+            ];
+        }
+
+        try {
+            
+            $pessoa->delete();
+
+        } catch (\Exception $e) {
+            return [
+                'status' => 500,
+                'msg' => $e->getMessage(),
+                'data' => []
+            ];
+        }
+        
+        return [
+            'status' => 200,
+            'msg' => 'registro apagado.'
+        ];
+
     }
 }
