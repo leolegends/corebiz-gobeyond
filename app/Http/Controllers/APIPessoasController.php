@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Traits\PessoasTrait;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 class APIPessoasController extends Controller
 {
 
@@ -50,6 +51,19 @@ class APIPessoasController extends Controller
         //? Método refatorado para a Trait PessoasTrait.       
         $result = $this->DeletePessoasTrait($id);
         return Response($result, $result['status']);
+    }
+
+    public function test()
+    {
+        $uid = uniqid();
+
+        Redis::set($uid, "Leonardo");
+
+        $expiresAt = now()->addMinutes(1);
+
+        Cache::put($uid, "Leonardo", $expiresAt); 
+
+        return Redis::get($uid);
     }
 
 }
