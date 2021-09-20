@@ -8,18 +8,19 @@ use Illuminate\Http\Request;
 class ServicesAPIVtexController extends Controller
 {
 
-    protected $endpoint;
+    protected $endpointSearch;
 
     public function __construct()
     {
-        $this->endpoint = new VtexSearchService();  
+        //? Controller API VTEX que utiliza o Service Search, podendo utilizar diversos Services Diferentes.
+        $this->endpointSearch = new VtexSearchService();  
     }
     
 
     public function listagemSearchVtex()
     {
 
-        $result = $this->endpoint->connectGet("https://loja.chillibeans.com.br/api/catalog_system/pub/products/search?Rayban");
+        $result = $this->endpointSearch->searchServiceVtex("https://loja.chillibeans.com.br/api/catalog_system/pub/products/search?Rayban");
 
         return $result;
     }

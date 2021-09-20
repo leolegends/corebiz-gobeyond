@@ -158,4 +158,16 @@ trait PessoasTrait
         ];
 
     }
+
+    //! Métodos especiais para Commands.
+
+    public function CommandMethodCleanTablePessoas() : void 
+    {
+        Pessoas::truncate();
+    }
+
+    public function CommandMethodCreateRegistersFakerPessoas(int $quantity) : void
+    {
+        \App\Models\Pessoas::factory($quantity)->create();
+    }
 }
