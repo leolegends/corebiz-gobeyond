@@ -1,0 +1,1 @@
+![alt text](https://github.com/leolegends/corebiz-gobeyond/blob/master/insigths.png?raw=true)
